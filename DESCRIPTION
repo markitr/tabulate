@@ -1,0 +1,25 @@
+Type: Package
+Package: tabulate
+Title: Calculates frequencies and means of tables
+Version: 0.1.0
+Authors@R: 
+    c(person(given = "Andreé",
+             family = "Johnsson",
+             role = c("aut", "cre"),
+             email = "andreejohnsson@gmail.com"),
+    c(person(given = "Ogge",
+             family = "Sjölin",
+             role = c("aut", "cre"),
+             email = "ogge@tuaril.org")
+             )
+Description: A fast, consistent tool for tabulating data frames like objects.
+License: MIT 
+BugReports: https://github.com/markitr/tabulate/issues
+Depends: 
+    R (>= 4.0.4)
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+LazyData: true
+Imports: 
+Suggests: 
