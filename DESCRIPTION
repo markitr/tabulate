@@ -12,20 +12,29 @@ Authors@R:
              role = "aut",
              email = "ogge@tuaril.org"))
 Description: A fast, consistent tool for tabulating data frames like objects.
-License: MIT 
+License: MIT + file LICENSE
 BugReports: https://github.com/markitr/tabulate/issues
 Depends: 
-    R (>= 4.0.4)
+    R (>= 4.0)
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
 LazyData: true
-Imports: 
-    dplyr,
-    tidyr,
-    Hmisc,
-    magrittr
-RoxygenNote: 7.1.1
 Suggests: 
     rmarkdown,
-    knitr
+    knitr,
+    qpdf
+Imports: 
+    dplyr,
+    tidyselect,
+    tidyr,
+    Hmisc,
+    magrittr,
+    glue,
+    rlang,
+    purrr,
+    haven,
+    stringr
+RoxygenNote: 7.1.1
+
+   
