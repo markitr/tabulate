@@ -1,0 +1,21 @@
+---
+title: "tabulate"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{tabulate}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(tabulate)
+```
+
+#Hello this is my intro page for my new package

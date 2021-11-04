@@ -1,17 +1,16 @@
 Type: Package
 Package: tabulate
-Title: Calculates frequencies and means of tables
+Title: Calculates frequencies and means of columns in a dataframe
 Version: 0.1.0
 Authors@R: 
     c(person(given = "Andreé",
              family = "Johnsson",
              role = c("aut", "cre"),
              email = "andreejohnsson@gmail.com"),
-    c(person(given = "Ogge",
+      person(given = "Ogge",
              family = "Sjölin",
-             role = c("aut", "cre"),
-             email = "ogge@tuaril.org")
-             )
+             role = "aut",
+             email = "ogge@tuaril.org"))
 Description: A fast, consistent tool for tabulating data frames like objects.
 License: MIT 
 BugReports: https://github.com/markitr/tabulate/issues
@@ -22,4 +21,11 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 Imports: 
+    dplyr,
+    tidyr,
+    Hmisc,
+    magrittr
+RoxygenNote: 7.1.1
 Suggests: 
+    rmarkdown,
+    knitr
