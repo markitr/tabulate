@@ -3,12 +3,12 @@
 
 # tabulate
 
-------------------------------------------------------------------------
-
 <!-- badges: start -->
 
 [![R build
 status](https://github.com/markitr/tabulate/workflows/R-CMD-check/badge.svg)](https://github.com/markitr/tabulate/actions?workflow=R-CMD-check)
+[![Codecov test
+coverage](https://codecov.io/gh/markitr/tabulate/branch/main/graph/badge.svg)](https://codecov.io/gh/markitr/tabulate?branch=main)
 [![R-CMD-check](https://github.com/markitr/tabulate/workflows/R-CMD-check/badge.svg)](https://github.com/markitr/tabulate/actions)
 
 <!-- badges: end -->
@@ -23,6 +23,11 @@ from a dataframe where:
 3.  You can use regex to match on almost any awrgument.
 
 ## Installation
+
+### Development version
+
+To get a bug fix or to use a feature from the development version, you
+can install the development version of dplyr from GitHub.
 
 ``` r
 # Or the development version from GitHub:

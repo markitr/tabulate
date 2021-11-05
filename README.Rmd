@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 
 # tabulate
 
----
 
 <!-- badges: start -->
 
@@ -35,6 +34,10 @@ The goal of tabulate is to help you create tabular data in long format from a da
 
 
 ## Installation
+
+### Development version
+
+To get a bug fix or to use a feature from the development version, you can install the development version of dplyr from GitHub.
 
 ```{r, eval = FALSE}
 # Or the development version from GitHub:
