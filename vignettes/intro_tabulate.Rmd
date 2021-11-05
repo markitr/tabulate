@@ -1,21 +1,35 @@
 ---
 title: "tabulate"
+description: >
+  This is a short desciption of how to use this function
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{tabulate}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  \usepackage[utf8]{inputenc}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+```{r, echo = FALSE, message = FALSE, warning = FALSE}}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+options(tibble.print_min = 4L, tibble.print_max = 4L)
 ```
+
+
+
+We’ll start by loading dplyr:
 
 ```{r setup}
 library(tabulate)
 ```
 
-#Hello this is my intro page for my new package
+
+# `tabulate()`
+The most important function of this package is `tabulate()`: it takes a dataframe and calculates the frequencies or mean 
+of columns. The results can be grouped by any other column and also calculated with another subsample. 
+
+```{r}
+tabulate(data = iris,cols = Species)
+tabulate(data = iris,cols = Sepal.Length, return_mean = TRUE)
+```
+
