@@ -23,7 +23,8 @@ LazyData: true
 Suggests: 
     rmarkdown,
     knitr,
-    qpdf
+    qpdf,
+    testthat (>= 3.0.0)
 Imports: 
     dplyr,
     tidyselect,
@@ -36,5 +37,4 @@ Imports:
     haven,
     stringr
 RoxygenNote: 7.1.1
-
-   
+Config/testthat/edition: 3
