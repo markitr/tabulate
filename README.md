@@ -18,9 +18,9 @@ coverage](https://codecov.io/gh/markitr/tabulate/branch/main/graph/badge.svg)](h
 The goal of tabulate is to help you create tabular data in long format
 from a dataframe where:
 
-1.  The output is predictable everytime.
+1.  The output is predictable every time.
 2.  You can group and cross any variable.
-3.  You can use regex to match on almost any awrgument.
+3.  You can use regex to match on almost any argument.
 
 ## Installation
 
@@ -38,5 +38,5 @@ devtools::install_github("markitr/tabulate")
 ------------------------------------------------------------------------
 
 Please note that the tidyr project is released with a [Contributor Code
-of Conduct](code_conduct/code_of_conduct.md). By contributing to this project,
+of Conduct](docs/code_of_conduct.md). By contributing to this project,
 you agree to abide by its terms.
