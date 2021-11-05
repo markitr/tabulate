@@ -17,10 +17,10 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 
-[![R build status](https://github.com/markitr/tabulate/workflows/R-CMD-check/badge.svg)](https://github.com/markitr/tabulate/actions?workflow=R-CMD-check)
+[![R-CMD-check](https://github.com/markitr/tabulate/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/markitr/tabulate/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/markitr/tabulate/branch/main/graph/badge.svg)](https://codecov.io/gh/markitr/tabulate?branch=main)
-[![R-CMD-check](https://github.com/markitr/tabulate/workflows/R-CMD-check/badge.svg)](https://github.com/markitr/tabulate/actions)
-
+[![test-coverage](https://github.com/markitr/tabulate/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/markitr/tabulate/actions/workflows/test-coverage.yaml)
+[![pkgdown](https://github.com/markitr/tabulate/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/markitr/tabulate/actions/workflows/pkgdown.yaml)
 
 <!-- badges: end -->
 
@@ -48,4 +48,4 @@ devtools::install_github("markitr/tabulate")
 
 ---
 
-Please note that the tidyr project is released with a [Contributor Code of Conduct](docs/code_of_conduct.md). By contributing to this project, you agree to abide by its terms.
+Please note that the tidyr project is released with a [Contributor Code of Conduct](code_conduct/code_of_conduct.md). By contributing to this project, you agree to abide by its terms.
