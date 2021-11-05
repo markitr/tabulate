@@ -1,10 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<!-- https://www.loonapix.com/images/1636054594292153823/ -->
 
 # tabulate
 
 ------------------------------------------------------------------------
+
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/markitr/tabulate/workflows/R-CMD-check/badge.svg)](https://github.com/markitr/tabulate/actions?workflow=R-CMD-check)
+[![R-CMD-check](https://github.com/markitr/tabulate/workflows/R-CMD-check/badge.svg)](https://github.com/markitr/tabulate/actions)
+
+<!-- badges: end -->
 
 ## Overview
 

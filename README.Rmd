@@ -16,6 +16,13 @@ knitr::opts_chunk$set(
 
 ---
 
+<!-- badges: start -->
+
+[![R build status](https://github.com/markitr/tabulate/workflows/R-CMD-check/badge.svg)](https://github.com/markitr/tabulate/actions?workflow=R-CMD-check)
+[![R-CMD-check](https://github.com/markitr/tabulate/workflows/R-CMD-check/badge.svg)](https://github.com/markitr/tabulate/actions)
+
+<!-- badges: end -->
+
 ## Overview
 
 The goal of tabulate is to help you create tabular data in long format from a dataframe where: 

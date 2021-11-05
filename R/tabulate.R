@@ -69,7 +69,6 @@ tabulate <- function(data, cols, weights = NULL, groups = NULL, samples = NULL,
   msg_ignore_question  <- "Ignoring cols of type character [return_mean=TRUE]: {paste(no_good, collapse = ',')}"
   msg_no_question_left <- "No numeric questions left"
   msg_no_weight_left   <- "No numeric weights left"
-
   msg_inputet_rows_excisitn_levels <- "Rows imputed due to missing values on existing levels: {nrow(extra_empty_cols)}"
 
   cols <- colnames(dplyr::select(data,{{cols}}))
