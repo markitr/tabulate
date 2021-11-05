@@ -22,7 +22,7 @@
 #' @importFrom rlang is_empty
 #' @importFrom magrittr `%<>%`
 #' @importFrom glue glue
-#' @import purrr
+#' @importFrom purrr imap_dfr map_dfr map_lgl
 #' @import stringr
 #'
 #' @export
@@ -73,13 +73,15 @@ tabulate <- function(data, cols, weights = NULL, groups = NULL, samples = NULL,
   msg_ignore_question  <- "Ignoring cols of type character [return_mean=TRUE]: {paste(no_good, collapse = ',')}"
   msg_no_question_left <- "No numeric questions left"
   msg_no_weight_left   <- "No numeric weights left"
-  msg_inputet_rows_excisitn_levels   <- "Rrows added due to missing values on excisting levels: {nrow(extra_empty_cols)}"
-  
-  cols <- colnames(select(data,{{cols}}))
-  if (!is_empty(expr(weights))) weights <- colnames(select(data,{{weights}} ) ); if(is_empty(weights)) weights <- NULL 
-  if (!is_empty(expr(groups)))  groups  <- colnames(select(data,{{groups}}  ) ); if(is_empty(groups))  groups  <- NULL 
-  if (!is_empty(expr(samples))) samples <- colnames(select(data,{{samples}} ) ); if(is_empty(samples)) samples <- NULL 
-  
+
+  msg_inputet_rows_excisitn_levels <- "Rows imputed due to missing values on existing levels: {nrow(extra_empty_cols)}"
+
+  cols <- colnames(dplyr::select(data,{{cols}}))
+  if (!rlang::is_empty(expr(weights))) weights <- colnames(select(data,{{weights}} ) ); if(rlang::is_empty(weights)) weights <- NULL
+  if (!rlang::is_empty(expr(groups)))  groups  <- colnames(select(data,{{groups}}  ) ); if(rlang::is_empty(groups))  groups  <- NULL
+  if (!rlang::is_empty(expr(samples))) samples <- colnames(select(data,{{samples}} ) ); if(rlang::is_empty(samples)) samples <- NULL
+
+
   # Check for varibles present
   if (!values_drop_na) message(msg_fullbase)
   in_cols <- c(cols, weights, groups, samples)
@@ -95,8 +97,10 @@ tabulate <- function(data, cols, weights = NULL, groups = NULL, samples = NULL,
       distinct() %>% 
       mutate(across(everything(), ~{
         attr_var <- ifelse(!is.null(attr(.,"labels")),"labels","levels")
-        factor(., levels = attr(., attr_var)) })) %>% 
-      imap_dfr(~{tibble(variable = .y, levels = levels(.x)) })
+
+        factor(., levels = attr(., attr_var)) })) %>%
+      purrr::imap_dfr(~{tibble(variable = .y, levels = levels(.x)) })
+
   }
   
   # Check cols type to calculate mean
@@ -179,36 +183,38 @@ tabulate <- function(data, cols, weights = NULL, groups = NULL, samples = NULL,
   
   res %<>% ungroup() %>%
     relocate(matches(c(column_order_char, column_order_num)), .after = last_col())
-  
-  # The empty levels are filled with 0 here. 
+
+
+  # The empty levels are filled with 0 here.
   if (keep_empty_levels && nrow(levels_df)>0){
 
     # make key to check levels within each group
     res %<>% unite("fake_res_key", matches(rev(column_order_char)[-1]), remove = FALSE)
-    
-    extra_empty_cols <- 
+
+    extra_empty_cols <-
       unique(res$fake_res_key) %>%
-      map_dfr(~{
+      purrr::map_dfr(~{
         current_key_var <- filter(res, fake_res_key == .x) %>% pull(variable) %>% unique()
         levels_for_current_var  <- filter(levels_df, variable == current_key_var) %>% pull(levels)
         current_var_resulsts_df <- filter(res, fake_res_key == .x)
-        
-        fake_res <- current_var_resulsts_df %>% 
-          mutate(value = "tmp") %>% 
-          group_by(across(.cols = -matches(column_order_num) ) ) %>% 
-          slice(1) %>% ungroup() %>% 
+
+        fake_res <- current_var_resulsts_df %>%
+          mutate(value = "tmp") %>%
+          group_by(across(.cols = -matches(column_order_num) ) ) %>%
+          slice(1) %>% ungroup() %>%
           mutate(n = 0 , pct = 0)
-        
+
         value_for_current_var <- current_var_resulsts_df %>% pull(value) %>% unique()
         level_not_in_results <- setdiff(levels_for_current_var, value_for_current_var)
 
-        map_dfr(level_not_in_results, ~{mutate(fake_res, value = .x) }) 
+        purrr::map_dfr(level_not_in_results, ~{mutate(fake_res, value = .x) })
+
       })
     message(glue::glue(msg_inputet_rows_excisitn_levels))
     res <- bind_rows(res, extra_empty_cols) %>% select(-fake_res_key)
     res %<>% arrange(across(matches(column_order_char)))
   }
-  
+
   # Separation of variable into variable and (brand)code
   if (is.null(variable_sep_suffix)) variable_sep_suffix <- "brandcode"
   if (!is.null(variable_sep)) {
