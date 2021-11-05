@@ -1,7 +1,7 @@
 ---
 title: "tabulate"
 description: >
-  This is a short desciption of how to use this function
+  This is a short desciption of the main functions of this package.
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{tabulate}
@@ -10,7 +10,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 options(tibble.print_min = 4L, tibble.print_max = 4L)
 ```
