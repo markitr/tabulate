@@ -38,5 +38,5 @@ devtools::install_github("markitr/tabulate")
 ------------------------------------------------------------------------
 
 Please note that the tidyr project is released with a [Contributor Code
-of Conduct](docs/code_of_conduct.md). By contributing to this project,
+of Conduct](code_conduct/code_of_conduct.md). By contributing to this project,
 you agree to abide by its terms.
