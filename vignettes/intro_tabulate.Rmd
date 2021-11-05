@@ -15,21 +15,20 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 options(tibble.print_min = 4L, tibble.print_max = 4L)
 ```
 
-
-
-We’ll start by loading dplyr:
+We'll start by loading dplyr:
 
 ```{r setup}
 library(tabulate)
 ```
 
-
 # `tabulate()`
-The most important function of this package is `tabulate()`: it takes a dataframe and calculates the frequencies or mean 
-of columns. The results can be grouped by any other column and also calculated with another subsample. 
+
+The most important function of this package is `tabulate()`: it takes a dataframe and calculates the frequencies or mean of columns. The results can be grouped by any other column and also calculated with another subsample.
 
 ```{r}
 tabulate(data = iris,cols = Species)
-tabulate(data = iris,cols = Sepal.Length, return_mean = TRUE)
 ```
 
+```{r}
+tabulate(data = iris,cols = Sepal.Length, return_mean = TRUE)
+```
