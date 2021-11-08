@@ -30,5 +30,5 @@ tabulate(data = iris,cols = Species)
 ```
 
 ```{r}
-tabulate(data = iris,cols = Sepal.Length, return_mean = TRUE)
+tabulate(data = iris,cols = Sepal.Length,groups = Species ,return_mean = TRUE)
 ```

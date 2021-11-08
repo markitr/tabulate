@@ -24,7 +24,7 @@
 #' @importFrom glue glue
 #' @importFrom purrr imap_dfr map_dfr map_lgl
 #' @import stringr
-#'
+#' @import utils
 #' @export
 #'
 #' @examples
@@ -61,24 +61,24 @@ tabulate <- function(data, cols, weights = NULL, groups = NULL, samples = NULL,
   # Making a label and level dictionary to fill empty levels with at the end
   if(keep_empty_levels){
     levels_df <- data %>%
-      select(all_of(cols)) %>% select(where(~{haven::is.labelled(.)|is.factor(.)})) %>%
+      select(all_of(cols)) %>% select(where(~{haven::is.labelled(.x)|is.factor(.x)})) %>%
       distinct() %>%
       mutate(across(everything(), ~{
         attr_var <- ifelse(!is.null(attr(.,"labels")),"labels","levels")
 
-        factor(., levels = attr(., attr_var)) })) %>%
+        factor(.x, levels = attr(.x, attr_var)) })) %>%
       purrr::imap_dfr(~{tibble(variable = .y, levels = levels(.x)) })
   }
 
   # Check cols type to calculate mean
   if (return_mean) {
-    cols %<>% check_and_ignore_wrong_type(data = data, variables = .,
+    cols <- check_and_ignore_wrong_type(data = data, variables = cols,
                                           warning_msg = msg_ignore_question,
                                           stop_msg = msg_no_question_left)
   }
   # Check weights type to calculate, and ignore character only.
   if (!is.null(weights) ){
-    weights %<>% check_and_ignore_wrong_type(data = data, variables = .,
+    weights <- check_and_ignore_wrong_type(data = data, variables = weights,
                                              warning_msg = msg_ignore_weight,
                                              stop_msg = msg_no_weight_left)
   }
@@ -86,7 +86,7 @@ tabulate <- function(data, cols, weights = NULL, groups = NULL, samples = NULL,
   # Make everything class character to be able to turn/pivot everything
   data %<>%
     mutate(across(all_of(unique(c(cols, groups, samples, weights))),
-                  .fns = ~as.character(.)))
+                  .fns = ~as.character(.x)))
 
   # This is to duplicate only the columns that overlap, not all
   overlapping_questions_sample <- intersect(cols, samples)
@@ -192,3 +192,5 @@ tabulate <- function(data, cols, weights = NULL, groups = NULL, samples = NULL,
   }
     return(res)
 }
+utils::globalVariables(c("weight_value", "value", "base","weight_value_notna","fake_res_key","variable","variable_output","value_output")) # https://community.rstudio.com/t/how-to-solve-no-visible-binding-for-global-variable-note/28887
+utils::globalVariables("where") # https://stackoverflow.com/questions/40251801/how-to-use-utilsglobalvariables
