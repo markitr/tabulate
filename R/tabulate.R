@@ -35,32 +35,6 @@ tabulate <- function(data, cols, weights = NULL, groups = NULL, samples = NULL,
                               return_mean = FALSE, values_drop_na = TRUE,
                               variable_sep = NULL, variable_sep_suffix = NULL, keep_empty_levels = FALSE) {
 
-  gather_longer <- function(data, variables, .names_to, .values_to, .keep_variables = NULL, .values_drop_na = FALSE) {
-  # This pivots a variable and keeps specified columns if any
-    if(!is_empty(.keep_variables)) {
-      reg_ex <- paste("^", .keep_variables, "$", collapse = "|", sep = "")
-      data %<>% mutate(across(matches(reg_ex), .fns = list(tmpcolb4itturns = ~.)))
-    }
-    data %<>%
-      pivot_longer(cols = all_of(variables), names_to = .names_to,
-                   values_to = .values_to, values_drop_na = .values_drop_na)
-
-    data %>% rename_with(.fn =~{str_remove_all(., "_tmpcolb4itturns$")},
-                         .cols = matches("_tmpcolb4itturns$"))
-  }
-
-  check_and_ignore_wrong_type <- function(data, variables, warning_msg, stop_msg) {
-  # This ignores wrong data type arguments and stops if nothing left.
-    variables_ignore <- data %>% select(all_of(variables)) %>% map_lgl(~{!is.numeric(.x)})
-    if (any(variables_ignore)) {
-      no_good <- names(variables_ignore)[variables_ignore]
-      message(glue::glue(warning_msg))
-      variables <- variables[!variables_ignore]
-      if (is_empty(variables)) stop(stop_msg)
-    }
-    return(variables)
-  }
-
   msg_param_conflict   <- "Note: If data contains missing values (NA's) mean calculation will return missing values (NA's)"
   msg_fullbase         <- "Note: values_drop_na=FALSE increases calculation time by a factor of 3 (approximately)"
   msg_separate         <- "Note: Separating variable components, this may take some time..."
