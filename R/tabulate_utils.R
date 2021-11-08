@@ -12,7 +12,8 @@
 #' @importFrom tidyselect all_of
 #' @importFrom dplyr rename_with matches across
 #' @importFrom stringr str_remove_all
-#'
+#' @keywords internal
+#' @noRd
 gather_longer <- function(data, variables, .names_to, .values_to, .keep_variables = NULL, .values_drop_na = FALSE) {
   # This pivots a variable and keeps specified columns if any
   if(!is_empty(.keep_variables)) {
@@ -40,7 +41,8 @@ gather_longer <- function(data, variables, .names_to, .values_to, .keep_variable
 #' @importFrom purrr map_lgl
 #' @importFrom rlang is_empty
 #' @importFrom glue glue
-#'
+#' @keywords internal
+#' @noRd
 check_and_ignore_wrong_type <- function(data, variables, warning_msg, stop_msg) {
   # This ignores wrong data type arguments and stops if nothing left.
   variables_ignore <- data %>% select(all_of(variables)) %>% map_lgl(~{!is.numeric(.x)})
